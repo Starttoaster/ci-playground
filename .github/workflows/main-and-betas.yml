@@ -13,9 +13,7 @@ jobs:
     strategy:
       matrix:
         env_name: [dev, beta]
-    env:
-      ENV_NAME: ${{ matrix.env_name }}
-    if: env.ENV_NAME != 'beta' || (env.ENV_NAME == 'beta' && startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-b')) 
     steps:
       - name: Checkout code
+        if: ${{ matrix.env_name != 'beta' }} || (${{ matrix.env_name == 'beta' && !startsWith(github.ref, 'refs/tags/') && !contains(github.ref, '-b') }})
         uses: actions/checkout@v2

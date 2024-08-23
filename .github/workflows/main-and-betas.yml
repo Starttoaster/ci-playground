@@ -4,29 +4,15 @@ on:
   push:
     branches:
       - main
-    tags:
-      - '*'
   release:
-    types:
-      - published
+    types: [prereleased]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env_name: [dev, staging, beta, production]
+        env_name: [dev, beta]
     steps:
-
-      - name: Check conditions
-        run: |
-          if [[ "${{ matrix.env_name }}" == "beta" ]]; then
-            if [[ "${{ github.ref }}" != refs/heads/main && ! "${{ github.ref }}" =~ "-b" ]]; then
-              echo "Skipping steps because this is not on the main branch or a pre-release with '-b'."
-              exit 0
-            fi
-          fi
-        shell: bash
-
       - name: Checkout code
         uses: actions/checkout@v2

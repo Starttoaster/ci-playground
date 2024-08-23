@@ -5,7 +5,7 @@ on:
     branches:
       - main
   release:
-    types: [prereleased]
+    types: [published]
 
 jobs:
   build:
@@ -13,6 +13,9 @@ jobs:
     strategy:
       matrix:
         env_name: [dev, beta]
+    env:
+      ENV_NAME: ${{ matrix.env_name }}
+    if: env.ENV_NAME != 'beta' || (env.ENV_NAME == 'beta' && startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-b')) 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

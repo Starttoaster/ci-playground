@@ -1,0 +1,25 @@
+name: Print commit message to logs
+
+on:
+  push:
+    branches:
+      - test
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Chia-Network/actions/git-mark-workspace-safe@main
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set commit message to vars
+        run: echo "COMMIT_MSG=\"$(git log -1 --pretty=%B)\"" >> $GITHUB_ENV
+
+      - name: Print commit message
+        run: echo $COMMIT_MSG

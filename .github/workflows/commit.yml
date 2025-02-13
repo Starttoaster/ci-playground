@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   print:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
       - uses: Chia-Network/actions/git-mark-workspace-safe@main
 

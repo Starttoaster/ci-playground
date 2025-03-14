@@ -18,4 +18,4 @@ jobs:
     steps:
       - name: Do thing
         run: |
-          echo "$TEST_${{ matrix.env_name }}"
+          echo ${TEST}_${{ matrix.env_name }}

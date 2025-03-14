@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - test2
+
+env:
+  TEST_dev: hello
+  TEST_prod: world
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env_name: [dev, prod]
+    steps:
+      - name: Do thing
+        run: |
+          echo "$TEST_${{ matrix.env_name }}"

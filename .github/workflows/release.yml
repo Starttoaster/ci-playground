@@ -40,8 +40,8 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: ci_playground-${RELEASE_TAG}.${{ matrix.os }}-${{ matrix.arch }}
-          path: ci_playground-${RELEASE_TAG}.${{ matrix.os }}-${{ matrix.arch }}
+          name: ci_playground-${{ env.RELEASE_TAG }}.${{ matrix.os }}-${{ matrix.arch }}
+          path: ci_playground-${{ env.RELEASE_TAG }}.${{ matrix.os }}-${{ matrix.arch }}
 
       - name: Upload release binary
         env:

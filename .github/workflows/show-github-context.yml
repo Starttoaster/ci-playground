@@ -1,0 +1,20 @@
+name: Show GitHub Context
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: |
+          echo '${{ toJSON(github) }}' > debug.txt
+          cat debug.txt

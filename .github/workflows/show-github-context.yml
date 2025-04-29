@@ -18,3 +18,4 @@ jobs:
         run: |
           echo '${{ toJSON(github) }}' > debug.txt
           cat debug.txt
+          echo "done"

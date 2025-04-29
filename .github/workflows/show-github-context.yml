@@ -15,4 +15,6 @@ jobs:
     steps:
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+        run: |
+          echo '${{ toJSON(github) }}' > debug.txt
+          cat debug.txt

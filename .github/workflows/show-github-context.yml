@@ -10,7 +10,7 @@ jobs:
   my_job:
     runs-on: ubuntu-latest
     env:
-      HELLO_WORLD: "Hello, {{ env.WORLD }}"
+      HELLO_WORLD: "Hello, ${{ env.WORLD }}"
     steps:
       - name: "Say Hello world"
         run: echo "$HELLO_WORLD"

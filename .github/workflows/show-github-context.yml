@@ -1,7 +1,6 @@
 name: Greetings
 
-on:
-  pull_request:
+on: push
 
 env:
   WORLD: world

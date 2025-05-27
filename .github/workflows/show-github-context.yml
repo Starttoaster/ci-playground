@@ -1,21 +1,16 @@
-name: Show GitHub Context
+name: Greetings
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-  release:
-    types: [published]
-  workflow_dispatch:
+
+env:
+  WORLD: world
 
 jobs:
-  echo:
+  my_job:
     runs-on: ubuntu-latest
+    env:
+      HELLO_WORLD: "Hello, {{ env.WORLD }}"
     steps:
-      - name: Dump GitHub context
-        id: github_context_step
-        run: |
-          echo '${{ toJSON(github) }}' > debug.txt
-          cat debug.txt
-          echo "done"
+      - name: "Say Hello world"
+        run: echo "$HELLO_WORLD"

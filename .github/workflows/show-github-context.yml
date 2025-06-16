@@ -13,7 +13,7 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     env:
-      HELLO: world
+      HELLO: somethingelse
     steps:
       - name: Dump GitHub context
         id: github_context_step

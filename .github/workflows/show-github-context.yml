@@ -3,7 +3,7 @@ name: Show GitHub Context
 on:
   push:
     branches:
-      - main
+      - '**'
   pull_request:
   release:
     types: [published]
@@ -12,9 +12,12 @@ on:
 jobs:
   echo:
     runs-on: ubuntu-latest
+    env:
+      HELLO: world
     steps:
       - name: Dump GitHub context
         id: github_context_step
+        if: "!contains(env.HELLO, 'orl')"
         run: |
           echo '${{ toJSON(github) }}' > debug.txt
           cat debug.txt

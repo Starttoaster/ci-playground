@@ -6,6 +6,9 @@ jobs:
   my_job:
     runs-on: macos-15
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        
       - name: Set env
         run: |
           export MY_VAR=$(git log -1 --pretty=%B)

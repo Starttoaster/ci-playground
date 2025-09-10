@@ -1,15 +1,16 @@
-name: Greetings
+name: Set env
 
 on: push
 
-env:
-  WORLD: world
-
 jobs:
   my_job:
-    runs-on: ubuntu-latest
-    env:
-      HELLO_WORLD: "Hello, ${{ env.WORLD }}"
+    runs-on: macos-15
     steps:
-      - name: "Say Hello world"
-        run: echo "$HELLO_WORLD"
+      - name: Set env
+        run: |
+          export MY_VAR=$(git log -1 --pretty=%B)
+          echo "MY_VAR=${MY_VAR}" >> "$GITHUB_ENV"
+
+      - name: Debug testing notes
+        run: |
+          echo "$MY_VAR"

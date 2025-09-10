@@ -19,4 +19,3 @@ jobs:
       - name: Debug testing notes
         run: |
           echo "$MY_VAR"
-          echo "done"

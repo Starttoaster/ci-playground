@@ -12,7 +12,9 @@ jobs:
       - name: Set env
         run: |
           export MY_VAR=$(git log -1 --pretty=%B)
-          echo "MY_VAR=${MY_VAR}" >> "$GITHUB_ENV"
+          echo "TESTING_NOTES<<EOF" >> "$GITHUB_ENV"
+          echo "$TESTING_NOTES" >> "$GITHUB_ENV"
+          echo "EOF" >> "$GITHUB_ENV"
 
       - name: Debug testing notes
         run: |

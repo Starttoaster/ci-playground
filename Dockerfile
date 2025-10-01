@@ -1,7 +1,3 @@
-FROM golang:1
+FROM alpine:latest
 
 COPY . .
-
-RUN go build
-
-CMD ./ci-playground

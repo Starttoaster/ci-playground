@@ -1,10 +1,7 @@
-name: Build
+name: Test vars
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
 
 permissions:
   id-token: write
@@ -12,5 +9,54 @@ permissions:
   packages: write
 
 jobs:
-  package:
-    uses: Chia-Network/actions/.github/workflows/docker-build.yaml@docker-size-fix
+  testa:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3
+    steps:
+
+      - name: Extract deployment variables
+        run: |
+          IFS='-' read -r ENVIRON NETWORK <<< "test-public"
+          echo "ENVIRON=$ENVIRON" >> "$GITHUB_ENV"
+          echo "NETWORK=$NETWORK" >> "$GITHUB_ENV"
+
+      - name: Read deployment variables
+        run: |
+          echo $ENVIRON
+          echo $NETWORK
+
+  testa2:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3
+    steps:
+
+      - name: Extract deployment variables
+        shell: bash
+        run: |
+          IFS='-' read -r ENVIRON NETWORK <<< "test-public"
+          echo "ENVIRON=$ENVIRON" >> "$GITHUB_ENV"
+          echo "NETWORK=$NETWORK" >> "$GITHUB_ENV"
+
+      - name: Read deployment variables
+        run: |
+          echo $ENVIRON
+          echo $NETWORK
+
+  testb:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/cmmarslender/kubectl-helm:v3
+    steps:
+      - name: Extract deployment variables
+        run: |
+          ENVIRON=$(echo "${{ inputs.deployment }}" | cut -d'-' -f1)
+          NETWORK=$(echo "${{ inputs.deployment }}" | cut -d'-' -f2)
+          echo "ENVIRON=$ENVIRON" >> "$GITHUB_ENV"
+          echo "NETWORK=$NETWORK" >> "$GITHUB_ENV"
+
+      - name: Read deployment variables
+        run: |
+          echo $ENVIRON
+          echo $NETWORK

@@ -1,4 +1,4 @@
-name: Build
+name: Update
 
 on:
   push:
@@ -12,5 +12,27 @@ permissions:
   packages: write
 
 jobs:
-  package:
-    uses: Chia-Network/actions/.github/workflows/docker-build.yaml@docker-size-fix
+  update-branch:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/chia-network/build-images/ips:main
+    steps:
+      - uses: Chia-Network/actions/git-mark-workspace-safe@main
+
+      - uses: actions/checkout@v6
+        with:
+          # Need REPO_ADMIN token so we can write back to the workflows in the repository
+          token: ${{ secrets.REPO_ADMIN }}
+
+      - name: Update code
+        run: |
+          echo "FROM scratch" > Dockerfile
+
+      - name: Show git output
+        run: |
+          git status
+          git diff
+
+      - name: Commit any changes back to the repo
+        run: |
+          ( git commit -am "Updating dockerfile" && git push ) || true

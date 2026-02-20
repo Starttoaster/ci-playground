@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: Chia-Network/actions/git-mark-workspace-safe@main
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           # Need REPO_ADMIN token so we can write back to the workflows in the repository
           token: ${{ secrets.REPO_ADMIN }}
@@ -32,6 +32,8 @@ jobs:
         run: |
           git status
           git diff
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
 
       - name: Commit any changes back to the repo
         run: |

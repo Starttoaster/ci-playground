@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: Chia-Network/actions/git-mark-workspace-safe@main
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v5
         with:
           # Need REPO_ADMIN token so we can write back to the workflows in the repository
           token: ${{ secrets.REPO_ADMIN }}

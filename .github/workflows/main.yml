@@ -12,5 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: ./.github/actions/hello@ce6a979b7a10ba343b27cb8eeaf1e6dcf38d2a6d
-
+      - uses: Starttoaster/ci-playground/.github/actions/hello@ce6a979b7a10ba343b27cb8eeaf1e6dcf38d2a6d

@@ -1,0 +1,8 @@
+name: "Says hello world"
+description: "Says hello world"
+runs:
+  using: "composite"
+  steps:
+    - name: Say hi
+      shell: bash
+      run: echo "Hello from a commit"

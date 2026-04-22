@@ -5,4 +5,4 @@ runs:
   steps:
     - name: Say hi
       shell: bash
-      run: echo "Hello from a commit"
+      run: echo "Hello from a tag"

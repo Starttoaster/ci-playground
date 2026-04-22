@@ -11,4 +11,5 @@ jobs:
   say-hi:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/hello
